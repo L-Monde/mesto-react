@@ -48,126 +48,113 @@ function App() {
 
 
     return ( <
-            body className = "body" > <
-            div className = "root" >
+        body className = "body" > <
+        div className = "root" >
+        <
+        Header / >
+        <
+        Main onEditProfile = { handleEditProfileClick }
+        onAddPlace = { handleAddPlaceClick }
+        onEditAvatar = { handleEditAvatarClick }
+        onCardClick = { handleCardClick }
+        / > <
+        Footer / >
+
+
+        <
+        PopupWithForm title = "Редактировать профиль"
+        name = "profile"
+        children = { < >
             <
-            Header / >
+            input id = "profileName"
+            type = "text"
+            className = "popup__edit popup__edit_type_name"
+            name = "form-name"
+            placeholder = "Имя"
+            minlength = "2"
+            maxlength = "40"
+            required / >
             <
-            Main onEditProfile = { handleEditProfileClick }
-            onAddPlace = { handleAddPlaceClick }
-            onEditAvatar = { handleEditAvatarClick }
-            onCardClick = { handleCardClick }
-            / > <
-            Footer / >
+            span id = "profileName-error"
+            className = "popup__error" > < /span> <
+            input id = "profileDesc"
+            type = "text"
+            className = "popup__edit popup__edit_type_description"
+            name = "form-description"
+            placeholder = "Краткое описание"
+            minlength = "2"
+            maxlength = "200"
+            required / >
+            <
+            span id = "profileDesc-error"
+            className = "popup__error" > < /span>  < / >
+        }
+        isOpen = { isEditProfilePopupOpen }
+        onClose = { closeAllPopups }
+        buttonText = "Сохранить" /
+        >
 
+
+        <
+        PopupWithForm title = "Новое место"
+        name = "add"
+        children = { < >
 
             <
-            PopupWithForm title = "Редактировать профиль"
-            name = "profile"
-            children = { < >
-                <
-                form className = "popup__form"
-                name = "popup-form"
-                noValidate >
-                <
-                input id = "profileName"
-                type = "text"
-                className = "popup__edit popup__edit_type_name"
-                name = "form-name"
-                placeholder = "Имя"
-                minlength = "2"
-                maxlength = "40"
-                required / >
-                <
-                span id = "profileName-error"
-                className = "popup__error" > < /span> <
-                input id = "profileDesc"
-                type = "text"
-                className = "popup__edit popup__edit_type_description"
-                name = "form-description"
-                placeholder = "Краткое описание"
-                minlength = "2"
-                maxlength = "200"
-                required / >
-                <
-                span id = "profileDesc-error"
-                className = "popup__error" > < /span>  < /
-                form > <
-                />}
-                isOpen = { isEditProfilePopupOpen }
-                onClose = { closeAllPopups }
-                buttonText = "Сохранить" /
-                >
+            input id = "newPlaceName"
+            type = "text"
+            className = "popup__edit popup__edit_type_place-name"
+            name = "place-name"
+            placeholder = "Название"
+            minLength = "2"
+            maxLength = "30"
+            required / >
+            <
+            span id = "newPlaceName-error"
+            className = "popup__error" > < /span> <
+            input id = "newPlaceDesc"
+            type = "url"
+            className = "popup__edit popup__edit_type_place-picture"
+            name = "place-description"
+            placeholder = "Ссылка на картинку"
+            required / >
+            <
+            span id = "newPlaceDesc-error"
+            className = "popup__error" > < /span>   < / >
+        }
+        isOpen = { isAddPlacePopupOpen }
+        onClose = { closeAllPopups }
+        buttonText = "Создать" /
+        >
 
 
-                <
-                PopupWithForm title = "Новое место"
-                name = "add"
-                children = { < >
-                    <
-                    form className = "popup__form popup__form-add"
-                    name = "popup-form_add"
-                    noValidate >
-                    <
-                    input id = "newPlaceName"
-                    type = "text"
-                    className = "popup__edit popup__edit_type_place-name"
-                    name = "place-name"
-                    placeholder = "Название"
-                    minLength = "2"
-                    maxLength = "30"
-                    required / >
-                    <
-                    span id = "newPlaceName-error"
-                    className = "popup__error" > < /span> <
-                    input id = "newPlaceDesc"
-                    type = "url"
-                    className = "popup__edit popup__edit_type_place-picture"
-                    name = "place-description"
-                    placeholder = "Ссылка на картинку"
-                    required / >
-                    <
-                    span id = "newPlaceDesc-error"
-                    className = "popup__error" > < /span>  < /
-                    form > <
-                    />}
-                    isOpen = { isAddPlacePopupOpen }
-                    onClose = { closeAllPopups }
-                    buttonText = "Создать" /
-                    >
+        <
+        PopupWithForm title = "Обновить аватар"
+        name = "avatar"
+        children = { < >
 
+            <
+            input id = "newAvatar"
+            type = "url"
+            className = "popup__edit popup__edit_type_avatar"
+            name = "avatar"
+            placeholder = "Ссылка на картинку"
+            required / >
+            <
+            span id = "newAvatar-error"
+            className = "popup__error" > < /span>   < / >
+        }
+        isOpen = { isEditAvatarPopupOpen }
+        onClose = { closeAllPopups }
+        buttonText = "Сохранить" /
+        >
+        <
+        ImagePopup card = { selectedCard }
+        onClose = { closeAllPopups }
+        /> < /
+        div > < /
+        body >
+    );
+}
 
-                    <
-                    PopupWithForm title = "Обновить аватар"
-                    name = "avatar"
-                    children = { < >
-                        <
-                        form className = "popup__form popup__form-avatar"
-                        name = "popup-form_avatar"
-                        noValidate >
-                        <
-                        input id = "newAvatar"
-                        type = "url"
-                        className = "popup__edit popup__edit_type_avatar"
-                        name = "avatar"
-                        placeholder = "Ссылка на картинку"
-                        required / >
-                        <
-                        span id = "newAvatar-error"
-                        className = "popup__error" > < /span>  < /
-                        form > < / >
-                    }
-                    isOpen = { isEditAvatarPopupOpen }
-                    onClose = { closeAllPopups }
-                    buttonText = "Сохранить" /
-                    >
-                    <
-                    ImagePopup card = { selectedCard }
-                    onClose = { closeAllPopups }
-                    /> < /
-                    div > < /
-                    body >
-                );
-            }
-
-            export default App;
+export default App;

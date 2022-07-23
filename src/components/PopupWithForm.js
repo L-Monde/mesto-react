@@ -14,7 +14,7 @@ function PopupWithForm(props) {
 
         <
         form className = "popup__form"
-        name = "popup-form"
+        name = { `popup-form-${name}` }
         noValidate > { children } <
         button type = "submit"
         className = "popup__button-submit" > { buttonText } < /button> < /
