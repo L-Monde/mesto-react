@@ -1,0 +1,5 @@
+.profile__container {
+    display: flex;
+    align-items: center;
+    padding: 23px 0 8px 0;
+}

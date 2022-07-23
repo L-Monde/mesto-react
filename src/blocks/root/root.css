@@ -1,0 +1,19 @@
+.root {
+    margin: 0 auto;
+    width: 68.5%;
+    max-width: 880px;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+}
+
+@media only screen and (max-width: 880px) {
+    .root {
+        width: 78.5%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .root {
+        width: 88.5%;
+    }
+}
