@@ -2,13 +2,16 @@ import React from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Card(props) {
-  const { card, onClick } = props;
+  const { card, onClick, onCardLike } = props;
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
   function handleClick() {
     onClick(card);
+  }
+  function handleCardLike() {
+    onCardLike(card);
   }
   //"element__button-like"
   return (
@@ -33,6 +36,7 @@ function Card(props) {
             className={
               isLiked ? "element__button-like_pressed" : "element__button-like"
             }
+            onClick={handleCardLike}
           ></button>
           <p className="element__likes-count"> </p>
         </div>

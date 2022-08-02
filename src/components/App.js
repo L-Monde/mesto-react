@@ -3,7 +3,7 @@ import { useState } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import api from "../utils/Api";
+import Api from "../utils/Api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 import PopupWithForm from "./PopupWithForm";
@@ -15,6 +15,13 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, chooseSelectedCard] = useState({ isActive: false });
+  const api = new Api({
+    url: "https://mesto.nomoreparties.co/v1/cohort-40",
+    headers: {
+      authorization: "f6e30d96-a451-4ec9-81ba-5b034a8c8256",
+      "Content-Type": "application/json",
+    },
+  });
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -48,7 +55,6 @@ function App() {
   }
 
   function closeAllPopups() {
-    console.log("123");
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);

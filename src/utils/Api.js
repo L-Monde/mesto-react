@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   constructor(config) {
     this._url = config.url;
     this._headers = config.headers;
@@ -78,12 +78,9 @@ class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
+  changeLikeCardStatus(id, isLiked) {
+    return isLiked
+      ? this.addCardLike(id, "PUT")
+      : this.removeCardLike(id, "DELETE");
+  }
 }
-const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-40",
-  headers: {
-    authorization: "f6e30d96-a451-4ec9-81ba-5b034a8c8256",
-    "Content-Type": "application/json",
-  },
-});
-export default api;

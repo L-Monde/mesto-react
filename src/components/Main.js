@@ -1,15 +1,18 @@
 import React from "react";
-import { useState } from "react";
-import api from "../utils/Api";
+import Api from "../utils/Api";
 import Card from "./Card";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Main(props) {
   const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
   const currentUser = React.useContext(CurrentUserContext);
-  const [userName, setUserName] = useState("Loading in progress...");
-  const [userBrief, setUserBrief] = useState("Loading in progress...");
-  const [userImage, setUserImage] = useState("#");
+  const api = new Api({
+    url: "https://mesto.nomoreparties.co/v1/cohort-40",
+    headers: {
+      authorization: "f6e30d96-a451-4ec9-81ba-5b034a8c8256",
+      "Content-Type": "application/json",
+    },
+  });
 
   //here we add content
   const [cards, renderCards] = React.useState([]);
@@ -21,6 +24,17 @@ function Main(props) {
       })
       .catch((err) => console.log("Ошибка:", err));
   }, []);
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        renderCards((state) =>
+          state.map((item) => (item._id === card._id ? newCard : item))
+        );
+      })
+      .catch((err) => console.log("Ошибка:", err));
+  }
 
   return (
     <main className="main">
@@ -54,7 +68,12 @@ function Main(props) {
       </section>
       <section className="elements">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onClick={onCardClick} />
+          <Card
+            key={card._id}
+            card={card}
+            onClick={onCardClick}
+            onCardLike={handleCardLike}
+          />
         ))}
       </section>
     </main>
