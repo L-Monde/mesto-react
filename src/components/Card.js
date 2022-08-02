@@ -2,7 +2,7 @@ import React from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Card(props) {
-  const { card, onClick, onCardLike } = props;
+  const { card, onClick, onCardLike, onCardDelete } = props;
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -11,7 +11,12 @@ function Card(props) {
     onClick(card);
   }
   function handleCardLike() {
+    console.log(isOwn);
     onCardLike(card);
+  }
+  function handleCardDelete() {
+    console.log("123");
+    onCardDelete(card);
   }
   //"element__button-like"
   return (
@@ -24,9 +29,8 @@ function Card(props) {
       />
       <button
         type="button"
-        className={
-          isOwn ? "card__delete-button_visible" : "card__delete-button_hidden"
-        }
+        className={isOwn ? "element__button-delete" : ""}
+        onClick={handleCardDelete}
       ></button>
       <div className="element__info">
         <h4 className="element__name"> {card.name} </h4>

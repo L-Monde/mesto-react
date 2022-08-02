@@ -24,6 +24,8 @@ function Main(props) {
       })
       .catch((err) => console.log("Ошибка:", err));
   }, []);
+
+  //card like switch
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     api
@@ -34,6 +36,13 @@ function Main(props) {
         );
       })
       .catch((err) => console.log("Ошибка:", err));
+  }
+
+  //card deletion stuff
+  function handleCardDelete(card) {
+    api.deleteCard(card._id).then(() => {
+      renderCards(cards.filter((item) => item._id !== card._id));
+    });
   }
 
   return (
@@ -73,6 +82,7 @@ function Main(props) {
             card={card}
             onClick={onCardClick}
             onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
           />
         ))}
       </section>
