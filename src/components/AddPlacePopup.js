@@ -27,7 +27,7 @@ function AddPlacePopup(props) {
         <>
           <input
             id="newPlaceName"
-            value=""
+            value={name}
             type="text"
             className="popup__edit popup__edit_type_place-name"
             name="place-name"
@@ -40,6 +40,7 @@ function AddPlacePopup(props) {
           <span id="newPlaceName-error" className="popup__error"></span>
           <input
             id="newPlaceDesc"
+            value={link}
             type="url"
             className="popup__edit popup__edit_type_place-picture"
             name="place-description"
