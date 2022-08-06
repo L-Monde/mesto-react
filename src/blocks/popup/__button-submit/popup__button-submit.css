@@ -10,7 +10,7 @@
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s linear;
-    transform: translate(0, 10px);
+    margin-bottom: 40px;
 }
 
 .popup__button-submit:hover {

@@ -27,6 +27,7 @@ function AddPlacePopup(props) {
         <>
           <input
             id="newPlaceName"
+            value=""
             type="text"
             className="popup__edit popup__edit_type_place-name"
             name="place-name"

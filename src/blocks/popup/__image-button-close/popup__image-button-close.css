@@ -9,7 +9,7 @@
     transition: background-image 0.75s linear;
     position: relative;
     right: 0;
-    transform: translate(15px, 0);
+    transform: translate(35px, 0);
 }
 
 .popup__image-button-close:hover {

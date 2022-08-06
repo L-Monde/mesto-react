@@ -11,7 +11,6 @@ function Card(props) {
     onClick(card);
   }
   function handleCardLike() {
-    console.log(isOwn);
     onCardLike(card);
   }
   function handleCardDelete() {
@@ -19,7 +18,7 @@ function Card(props) {
   }
   //"element__button-like"
   return (
-    <div key={card._id} className="element">
+    <div className="element">
       <img
         className="element__image"
         src={card.link}
@@ -28,7 +27,9 @@ function Card(props) {
       />
       <button
         type="button"
-        className={isOwn ? "element__button-delete" : ""}
+        className={
+          isOwn ? "element__button-delete" : "element__button-delete_hidden"
+        }
         onClick={handleCardDelete}
       ></button>
       <div className="element__info">
@@ -41,7 +42,7 @@ function Card(props) {
             }
             onClick={handleCardLike}
           ></button>
-          <p className="element__likes-count"> </p>
+          <p className="element__likes-count"> {card.likes.length} </p>
         </div>
       </div>
     </div>
