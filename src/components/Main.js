@@ -4,47 +4,16 @@ import Card from "./Card";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
+  const {
+    cards,
+    onCardLike,
+    onCardDelete,
+    onEditProfile,
+    onAddPlace,
+    onEditAvatar,
+    onCardClick,
+  } = props;
   const currentUser = React.useContext(CurrentUserContext);
-  const api = new Api({
-    url: "https://mesto.nomoreparties.co/v1/cohort-40",
-    headers: {
-      authorization: "f6e30d96-a451-4ec9-81ba-5b034a8c8256",
-      "Content-Type": "application/json",
-    },
-  });
-
-  //here we add content
-  const [cards, renderCards] = React.useState([]);
-  React.useEffect(() => {
-    api
-      .getCardsArray()
-      .then((res) => {
-        renderCards(res);
-      })
-      .catch((err) => console.log("Ошибка:", err));
-  }, []);
-
-  //card like switch
-  function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api
-      .changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
-        renderCards((state) =>
-          state.map((item) => (item._id === card._id ? newCard : item))
-        );
-      })
-      .catch((err) => console.log("Ошибка:", err));
-  }
-
-  //card deletion stuff
-  function handleCardDelete(card) {
-    api.deleteCard(card._id).then(() => {
-      renderCards(cards.filter((item) => item._id !== card._id));
-    });
-  }
-
   return (
     <main className="main">
       <section className="profile">
@@ -81,8 +50,8 @@ function Main(props) {
             key={card._id}
             card={card}
             onClick={onCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
           />
         ))}
       </section>

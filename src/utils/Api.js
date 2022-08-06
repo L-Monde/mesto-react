@@ -16,7 +16,7 @@ export default class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
-  addNewCard(name, link) {
+  addNewCard({ name, link }) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -39,7 +39,7 @@ export default class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
-  changeProfileInfo(name, about) {
+  changeProfileInfo({ name, about }) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,

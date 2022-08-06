@@ -15,7 +15,6 @@ function Card(props) {
     onCardLike(card);
   }
   function handleCardDelete() {
-    console.log("123");
     onCardDelete(card);
   }
   //"element__button-like"
