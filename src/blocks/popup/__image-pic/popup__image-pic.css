@@ -6,6 +6,7 @@
 
 @media only screen and (max-width: 480px) {
     .popup__image-pic {
-        max-width: 240px;
+        width: 100%;
+        max-width: 280px;
     }
 }

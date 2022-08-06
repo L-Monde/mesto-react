@@ -10,6 +10,7 @@
     min-width: 278px;
     max-width: 60vw;
     max-height: 80%;
+    text-align: center;
 }
 
 @media only screen and (max-width: 400px) {
